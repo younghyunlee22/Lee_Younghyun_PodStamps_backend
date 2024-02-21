@@ -2,6 +2,9 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import SpotifyWebApi from "spotify-web-api-node";
+import mongoose from "mongoose";
+
+import quickSaveRoutes from "./routes/quickSave.mjs";
 
 const app = express();
 
@@ -60,6 +63,14 @@ app.post("/signin", (req, res) => {
       res.sendStatus(400);
     });
 });
+
+app.use("/api", quickSaveRoutes);
+mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => console.log("DB connected"))
+    .catch((e) => {
+      console.log(e);
+    });
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
