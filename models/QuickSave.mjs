@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-// Define schema
 const quickSaveSchema = new mongoose.Schema({
     username: {
         type: String,

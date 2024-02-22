@@ -14,12 +14,16 @@ export const quickSaveCreate = async (req, res) => {
         }
         // Extract episode ID from the Spotify link
         // https://open.spotify.com/episode/59v1LmgmajUIAqXITdpz95?si=eJmhriBKSVijNB8220uhCQ&t=1781&context=spotify%3Ashow%3A0dWpNy3iA6Mm3xYaHB2Zi9
-        const episodeIdStartIndex = link.indexOf('episode/') + 8; // Find the index of 'episode/' and add 8 to get the start index of the episode ID
-        let episodeIdEndIndex = link.indexOf('?', episodeIdStartIndex); // Find the index of '?' after the start index
-        if (episodeIdEndIndex === -1) { // If '?' not found, set the end index to the end of the string
+        const episodeIdStartIndex = link.indexOf('episode/') + 8;
+        // Find the index of 'episode/' and add 8 to get the start index of the episode ID
+        let episodeIdEndIndex = link.indexOf('?', episodeIdStartIndex);
+        // Find the index of '?' after the start index
+        if (episodeIdEndIndex === -1) {
+            // If '?' not found, set the end index to the end of the string
             episodeIdEndIndex = link.length;
         }
-        const episodeId = link.substring(episodeIdStartIndex, episodeIdEndIndex); // Extract the substring between the start and end indices
+        const episodeId = link.substring(episodeIdStartIndex, episodeIdEndIndex);
+        // Extract the substring between the start and end indices
 
         console.log("epi", episodeId)
         const embedLink = `https://open.spotify.com/embed/episode/${episodeId}/?t=${t}`;

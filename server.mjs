@@ -10,7 +10,6 @@ const app = express();
 
 const PORT = process.env.PORT || 8000;
 
-// Configuring the server to accept and parse JSON data.
 app.use(cors());
 app.use(express.json());
 
@@ -44,7 +43,6 @@ app.post("/signin", (req, res) => {
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
   });
-  console.log("line 44 code", code);
 
   spotifyApi
     .authorizationCodeGrant(code)
@@ -55,10 +53,8 @@ app.post("/signin", (req, res) => {
         refreshToken: data.body.refresh_token,
         expiresIn: data.body.expires_in,
       });
-      console.log("line 54");
     })
     .catch((err) => {
-      console.log("line 58");
       console.log(err);
       res.sendStatus(400);
     });
